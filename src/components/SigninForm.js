@@ -14,6 +14,7 @@ const initialState = {
 }
 
 class SigninForm extends React.Component{
+
         state = initialState;
 
         handleChange = event => {
@@ -22,39 +23,55 @@ class SigninForm extends React.Component{
         }
 
         validate = () => {
-          let signinNameErr = '';
-          let signinEmailErr = '';
-          let signinPasswordErr = '';
+              let signinNameErr = '';
+              let signinEmailErr = '';
+              let signinPasswordErr = '';
 
-          //validate name empty filed
-          if(!this.state.signinName){
-            signinNameErr = 'Please enter Name';
-          }
-         //Validate email
-          if(!this.state.signinEmail.includes('@')){
-              signinEmailErr = 'Please enter valid email';
-          }
-          //validate password
-          if(!this.state.signinPassword){
-            signinPasswordErr = 'Please enter Password';
-          }
-          if(signinEmailErr || signinNameErr || signinPasswordErr){
-            this.setState({signinEmailErr, signinNameErr, signinPasswordErr});
-            return false;
-          }
-          //if every thing ti fine rerun to ture
-          return true;
+              this.state.signinName === ''
+              ? this.setState({signinNameErr: 'Please enter Name'})
+              : this.setState({signinNameErr: ''});
+
+              if(this.state.signinEmail === ''){
+                this.setState({signinEmailErr: 'Please eneter email'})
+              }else if (!this.state.signinEmail.includes('@')) {
+                this.setState({signinEmailErr: 'Please enter valid email'})
+              }else{
+                this.setState({signinEmailErr: ''});
+              }
+
+              this.state.signinPassword === ''
+              ? this.setState({signinPasswordErr: 'Please enter Password'})
+              : this.setState({signinPasswordErr: ''});
+
+
+             //  //validate name empty filed
+             //  if(!this.state.signinName){
+             //    signinNameErr = 'Please enter Name';
+             //  }
+             // //Validate email
+             //  if(!this.state.signinEmail.includes('@')){
+             //      signinEmailErr = 'Please enter valid email';
+             //  }
+             //  //validate password
+             //  if(!this.state.signinPassword){
+             //    signinPasswordErr = 'Please enter Password';
+             //  }
+             //  if(signinEmailErr || signinNameErr || signinPasswordErr){
+             //    this.setState({signinEmailErr, signinNameErr, signinPasswordErr});
+             //    return false;
+             //  }
+             //  //if every thing ti fine rerun to ture
+             //  return true;
+
+
         }
 
         handleSubmit = event => {
-        event.preventDefault();
-        const isValid = this.validate();
-        if(isValid){
-          console.log(this.state);
-          //clear Form
-            this.setState(initialState);
-        }
-
+            event.preventDefault();
+            const isValid = this.validate();
+            if(isValid){
+              console.log(this.state);
+            }
        }
 
 
