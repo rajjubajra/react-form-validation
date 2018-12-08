@@ -43,27 +43,6 @@ class SigninForm extends React.Component{
               ? this.setState({signinPasswordErr: 'Please enter Password'})
               : this.setState({signinPasswordErr: ''});
 
-
-             //  //validate name empty filed
-             //  if(!this.state.signinName){
-             //    signinNameErr = 'Please enter Name';
-             //  }
-             // //Validate email
-             //  if(!this.state.signinEmail.includes('@')){
-             //      signinEmailErr = 'Please enter valid email';
-             //  }
-             //  //validate password
-             //  if(!this.state.signinPassword){
-             //    signinPasswordErr = 'Please enter Password';
-             //  }
-             //  if(signinEmailErr || signinNameErr || signinPasswordErr){
-             //    this.setState({signinEmailErr, signinNameErr, signinPasswordErr});
-             //    return false;
-             //  }
-             //  //if every thing ti fine rerun to ture
-             //  return true;
-
-
         }
 
         handleSubmit = event => {
