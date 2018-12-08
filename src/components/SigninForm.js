@@ -27,30 +27,44 @@ class SigninForm extends React.Component{
               let signinEmailErr = '';
               let signinPasswordErr = '';
 
-              this.state.signinName === ''
-              ? this.setState({signinNameErr: 'Please enter Name'})
-              : this.setState({signinNameErr: ''});
-
-              if(this.state.signinEmail === ''){
-                this.setState({signinEmailErr: 'Please eneter email'})
-              }else if (!this.state.signinEmail.includes('@')) {
-                this.setState({signinEmailErr: 'Please enter valid email'})
-              }else{
-                this.setState({signinEmailErr: ''});
+              if(!this.state.signinName){
+                  signinNameErr = 'Please enter name';
+              }
+              if(!this.state.signinEmail){
+                  signinEmailErr = 'Please eneter email';
+              }
+              if (!this.state.signinEmail.includes('@')) {
+                  signinEmailErr =  'Please enter valid email';
+              }
+              if(!this.state.signinPassword){
+                signinPasswordErr =  'Please enter Password';
               }
 
-              this.state.signinPassword === ''
-              ? this.setState({signinPasswordErr: 'Please enter Password'})
-              : this.setState({signinPasswordErr: ''});
+             console.log(signinNameErr);
+             console.log(signinEmailErr);
+             console.log(signinPasswordErr);
 
+             if(signinNameErr || signinEmailErr || signinPasswordErr){
+               console.log('uncomplete form submission');
+               this.setState({signinNameErr, signinEmailErr, signinPasswordErr});
+               return false;
+             }
+
+             //if every thing is okay
+             console.log('proceed action');
+             this.setState({signinNameErr: '', signinEmailErr: '', signinPasswordErr: ''});
+             return true;
         }
 
         handleSubmit = event => {
             event.preventDefault();
             const isValid = this.validate();
-            if(isValid){
-              console.log(this.state);
+            console.log('check validation : ',isValid);
+            if(!isValid){
+              console.log('Error: uncomplete form submission');
+              return false;
             }
+            console.log("Action : ",this.state);
        }
 
 
